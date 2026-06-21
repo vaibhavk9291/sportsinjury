@@ -1,10 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
-import useEmblaCarousel from "embla-carousel-react";
-import { useCallback, useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { CircularGallery } from "@/components/ui/circular-gallery";
 
 export default function Team() {
   const team = [
@@ -23,146 +20,72 @@ export default function Team() {
       link: "https://mysportinjury.janeapp.co.uk/#/staff_member/2/bio"
     },
     {
-      name: "Team Member",
+      name: "Team Member 1",
       role: "Sports Chiropractor",
       bio: "Expert in spinal adjustments and musculoskeletal alignment for optimal performance.",
-      photo: "",
+      photo: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=800&auto=format&fit=crop",
       link: "#"
     },
     {
-      name: "Team Member",
+      name: "Team Member 2",
       role: "Sports Massage Therapist",
       bio: "Specialises in deep tissue manipulation and sports-specific recovery protocols.",
-      photo: "",
+      photo: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=800&auto=format&fit=crop",
       link: "#"
     },
     {
-      name: "Team Member",
+      name: "Team Member 3",
       role: "Osteopath",
       bio: "Focuses on holistic recovery and alignment strategies.",
-      photo: "",
+      photo: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop",
       link: "#"
     }
   ];
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: "start",
-    loop: false,
-    dragFree: true,
-  });
-
-  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
-  const [nextBtnEnabled, setNextBtnEnabled] = useState(true);
-
-  const scrollPrev = useCallback(() => emblaApi && emblaApi.scrollPrev(), [emblaApi]);
-  const scrollNext = useCallback(() => emblaApi && emblaApi.scrollNext(), [emblaApi]);
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setPrevBtnEnabled(emblaApi.canScrollPrev());
-    setNextBtnEnabled(emblaApi.canScrollNext());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
-  }, [emblaApi, onSelect]);
+  const galleryItems = team.map(member => ({
+    name: member.name,
+    role: member.role,
+    bio: member.bio,
+    photo: {
+      url: member.photo,
+      text: member.name,
+    }
+  }));
 
   return (
-    <section id="team" className="bg-[var(--color-brand-bg)] py-24 w-full overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
+    <section id="team" className="bg-[var(--color-brand-bg)] w-full">
+      <div className="w-full" style={{ height: '300vh' }}>
+        <div className="w-full h-screen sticky top-0 flex flex-col items-center justify-center overflow-hidden pt-24 pb-12">
+          
+          {/* Section Header */}
+          <div className="absolute top-24 z-10 text-center px-6 pointer-events-none w-full">
             <span className="text-[var(--color-brand-muted)] font-syne text-size-xs uppercase tracking-widest block mb-4">
               OUR SPECIALISTS
             </span>
-            <h2 className="font-syne font-bold text-[40px] md:text-[52px] leading-tight text-white mb-4">
+            <h2 className="font-syne font-bold text-[40px] md:text-[52px] leading-tight text-white mb-4 drop-shadow-md">
               The Experts in Your Corner.
             </h2>
-            <p className="text-[var(--color-brand-muted)] text-lg max-w-2xl">
-              HCPC registered, CSP accredited, and obsessed with getting you better — faster and safer than anywhere else in Manchester.
+            <p className="text-zinc-300 text-lg max-w-2xl mx-auto drop-shadow-md">
+              HCPC registered, CSP accredited, and obsessed with getting you better. <br/>
+              <span className="text-[var(--color-brand-lime)] mt-2 inline-block">↓ Scroll down to rotate the gallery</span>
             </p>
           </div>
           
-          <div className="flex gap-3">
-            <button
-              onClick={scrollPrev}
-              disabled={!prevBtnEnabled}
-              className={`w-12 h-12 rounded-full flex items-center justify-center border transition-colors ${
-                prevBtnEnabled 
-                  ? "border-[rgba(255,255,255,0.2)] text-white hover:bg-[rgba(255,255,255,0.05)]" 
-                  : "border-[rgba(255,255,255,0.05)] text-zinc-600 cursor-not-allowed"
-              }`}
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button
-              onClick={scrollNext}
-              disabled={!nextBtnEnabled}
-              className={`w-12 h-12 rounded-full flex items-center justify-center border transition-colors ${
-                nextBtnEnabled 
-                  ? "border-[rgba(255,255,255,0.2)] text-white hover:bg-[rgba(255,255,255,0.05)]" 
-                  : "border-[rgba(255,255,255,0.05)] text-zinc-600 cursor-not-allowed"
-              }`}
-            >
-              <ChevronRight size={24} />
-            </button>
+          {/* Circular 3D Gallery */}
+          <div className="w-full h-full mt-24">
+            <CircularGallery items={galleryItems} radius={450} autoRotateSpeed={0.05} />
           </div>
-        </div>
 
-        <div className="embla overflow-hidden" ref={emblaRef}>
-          <div className="embla__container flex gap-6">
-            {team.map((member, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="embla__slide flex-[0_0_85%] sm:flex-[0_0_45%] lg:flex-[0_0_280px] min-w-0 bg-[var(--color-brand-card)] rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.07)] hover:border-[var(--color-brand-lime)]/30 transition-all duration-300 group flex flex-col"
-              >
-                <div className="aspect-[3/4] w-full bg-zinc-900 relative overflow-hidden">
-                  {member.photo ? (
-                    <img
-                      src={member.photo}
-                      alt={member.name}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-zinc-600 bg-zinc-900">
-                      Photo Placeholder
-                    </div>
-                  )}
-                </div>
-                <div className="p-5 flex flex-col flex-grow bg-[var(--color-brand-card)]">
-                  <h3 className="font-semibold text-white text-lg">{member.name}</h3>
-                  <p className="text-[var(--color-brand-lime)] text-sm mb-2">{member.role}</p>
-                  <p className="text-[var(--color-brand-muted)] text-sm leading-relaxed line-clamp-2 flex-grow">
-                    {member.bio}
-                  </p>
-                  <a
-                    href={member.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-zinc-400 text-xs hover:text-white mt-4 inline-block transition-colors"
-                  >
-                    View Profile →
-                  </a>
-                </div>
-              </motion.div>
-            ))}
+          {/* Footer CTA */}
+          <div className="absolute bottom-12 z-10 text-center pointer-events-auto w-full">
+            <p className="text-zinc-400">
+              Want to join our team?{" "}
+              <Link href="/career/" className="text-[var(--color-brand-lime)] font-medium hover:underline underline-offset-4 hover:text-white transition-colors">
+                We're Hiring →
+              </Link>
+            </p>
           </div>
-        </div>
 
-        <div className="mt-16 text-center">
-          <p className="text-[var(--color-brand-muted)]">
-            Want to join our team?{" "}
-            <Link href="/career/" className="text-[var(--color-brand-lime)] font-medium hover:underline underline-offset-4">
-              We're Hiring →
-            </Link>
-          </p>
         </div>
       </div>
     </section>
