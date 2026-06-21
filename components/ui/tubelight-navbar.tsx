@@ -34,11 +34,18 @@ export function NavBar({ items, className }: NavBarProps) {
   return (
     <div
       className={cn(
-        "fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:pt-6",
+        "fixed bottom-0 sm:top-12 left-1/2 -translate-x-1/2 z-50 mb-6 sm:mb-0",
         className,
       )}
     >
-      <div className="flex items-center gap-3 bg-[#0C0C0E]/80 border border-[rgba(255,255,255,0.1)] backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+      <div className="flex items-center gap-2 sm:gap-3 bg-[#0C0C0E]/80 border border-[rgba(255,255,255,0.1)] backdrop-blur-lg py-1 px-1 sm:pl-5 rounded-full shadow-lg">
+        <Link href="/" className="flex-shrink-0 mr-2 hidden md:block">
+          <img
+            src="https://mysportsinjury.co.uk/wp-content/uploads/2024/06/65f8e0fe405ebd03bea9b940_MSI__1_-removebg-preview-p-500-1.png"
+            alt="MY Sports Injury"
+            className="h-5 w-auto brightness-0 invert hover:brightness-110 transition-all duration-200"
+          />
+        </Link>
         {items.map((item) => {
           const Icon = item.icon
           const isActive = activeTab === item.name
