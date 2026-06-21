@@ -30,14 +30,6 @@ export default function VideoTestimonialsSection() {
       quote: "Marcus — 'Post-surgery rehab was brilliant. Back to training in 8 weeks.'",
       name: "Marcus L.",
       src: "/videos/WhatsApp-Video-2026-02-14-at-11.07.38-AM-2.mp4"
-    },
-    {
-      id: 4,
-      badge: "Injury Rehab",
-      stars: "★★★★★",
-      quote: "Alex — 'Could barely lift my arm, now I'm back to full mobility without pain.'",
-      name: "Alex R.",
-      src: "/videos/IMG_8067.mp4"
     }
   ];
 

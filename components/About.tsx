@@ -40,8 +40,18 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="relative"
         >
-          <div className="w-full aspect-[3/4] bg-zinc-900 rounded-2xl border border-zinc-800 flex items-center justify-center relative overflow-hidden">
-            <span className="text-zinc-600">Team / clinic photo here</span>
+          <div className="w-full aspect-[3/4] bg-zinc-900 rounded-2xl border border-[var(--color-brand-border)] flex items-center justify-center relative overflow-hidden group">
+            <video
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9' fill='%23111115'%3E%3Crect width='16' height='9'/%3E%3C/svg%3E"
+            >
+              <source src="/videos/IMG_8067.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0C0C0E] via-transparent to-transparent opacity-60" />
           </div>
           
           {/* Floating Stat Card */}
