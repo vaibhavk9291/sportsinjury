@@ -13,8 +13,7 @@ export default function VideoTestimonialsSection() {
       stars: "★★★★★",
       quote: "James — 'I had severe lower back pain. Now completely pain-free after 4 sessions.'",
       name: "James T.",
-      src: "/videos/WhatsApp-Video-2026-02-14-at-11.07.37-AM-1.mp4",
-      poster: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2420&auto=format&fit=crop"
+      src: "/videos/WhatsApp-Video-2026-02-14-at-11.07.37-AM-1.mp4"
     },
     {
       id: 2,
@@ -22,8 +21,7 @@ export default function VideoTestimonialsSection() {
       stars: "★★★★★",
       quote: "Sarah — 'Best sports massage I've ever had. They actually fix the root cause.'",
       name: "Sarah M.",
-      src: "/videos/WhatsApp-Video-2026-02-14-at-11.07.38-AM-1.mp4",
-      poster: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=2187&auto=format&fit=crop"
+      src: "/videos/WhatsApp-Video-2026-02-14-at-11.07.38-AM-1.mp4"
     },
     {
       id: 3,
@@ -31,8 +29,7 @@ export default function VideoTestimonialsSection() {
       stars: "★★★★★",
       quote: "Marcus — 'Post-surgery rehab was brilliant. Back to training in 8 weeks.'",
       name: "Marcus L.",
-      src: "/videos/WhatsApp-Video-2026-02-14-at-11.07.38-AM-2.mp4",
-      poster: "https://images.unsplash.com/photo-1526502611732-fcc61a0d7f45?q=80&w=2370&auto=format&fit=crop"
+      src: "/videos/WhatsApp-Video-2026-02-14-at-11.07.38-AM-2.mp4"
     }
   ];
 
@@ -127,8 +124,8 @@ export default function VideoTestimonialsSection() {
                     id={`video-${vid.id}`}
                     controls={activeVideo === vid.id}
                     playsInline
-                    className="absolute inset-0 w-full h-full object-cover"
-                    poster={vid.poster}
+                    className="w-full h-full object-cover"
+                    poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9' fill='%23111115'%3E%3Crect width='16' height='9'/%3E%3C/svg%3E"
                   >
                     <source src={vid.src} type="video/mp4" />
                   </video>
