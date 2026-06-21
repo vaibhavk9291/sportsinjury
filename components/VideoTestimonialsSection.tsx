@@ -2,8 +2,8 @@
 
 import { useState, useCallback, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 import { PlayCircle, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
 
 export default function VideoTestimonialsSection() {
   const videos = [
@@ -30,36 +30,24 @@ export default function VideoTestimonialsSection() {
     }
   ];
 
-  const reviews = [
-    {
-      text: "The team at MY Sports Injury got me back on the pitch in 3 weeks after an ankle sprain. Incredibly knowledgeable.",
-      name: "David H.",
-    },
-    {
-      text: "I've been to 4 different physios over the years, but this is the first clinic that truly understood my biomechanics.",
-      name: "Emily R.",
-    },
-    {
-      text: "Excellent service from start to finish. The clinic is pristine, and the staff are incredibly professional.",
-      name: "Michael B.",
-    },
-    {
-      text: "As a runner, finding a good physio is hard. These guys are the best in Manchester hands down.",
-      name: "Sophie T.",
-    },
-    {
-      text: "Post-surgery rehab went smoother than I could have ever imagined. Can't thank them enough.",
-      name: "Liam O.",
-    }
+  const clinicReviews = [
+    { text: "The team at MY Sports Injury got me back on the pitch in 3 weeks after an ankle sprain. Incredibly knowledgeable.", name: "David H.", role: "Amateur Footballer", image: "https://randomuser.me/api/portraits/men/1.jpg", stars: "★★★★★" },
+    { text: "I've been to 4 different physios over the years, but this is the first clinic that truly understood my biomechanics.", name: "Emily R.", role: "Marathon Runner", image: "https://randomuser.me/api/portraits/women/2.jpg", stars: "★★★★★" },
+    { text: "Excellent service from start to finish. The clinic is pristine, and the staff are incredibly professional.", name: "Michael B.", role: "Verified Patient", image: "https://randomuser.me/api/portraits/men/3.jpg", stars: "★★★★★" },
+    { text: "As a runner, finding a good physio is hard. These guys are the best in Manchester hands down.", name: "Sophie T.", role: "Verified Patient", image: "https://randomuser.me/api/portraits/women/4.jpg", stars: "★★★★★" },
+    { text: "Post-surgery rehab went smoother than I could have ever imagined. Can't thank them enough.", name: "Liam O.", role: "Verified Patient", image: "https://randomuser.me/api/portraits/men/5.jpg", stars: "★★★★★" },
+    { text: "Their deep tissue massage is game-changing. I feel completely rejuvenated after every session.", name: "Zainab H.", role: "Verified Patient", image: "https://randomuser.me/api/portraits/women/6.jpg", stars: "★★★★★" },
+    { text: "The dry cupping therapy resolved my shoulder tension in just two visits. Highly recommended.", name: "Farhan S.", role: "Verified Patient", image: "https://randomuser.me/api/portraits/men/7.jpg", stars: "★★★★★" },
+    { text: "Clear communication, effective treatment plans, and genuine care for patient recovery.", name: "Sana S.", role: "Verified Patient", image: "https://randomuser.me/api/portraits/women/8.jpg", stars: "★★★★★" },
+    { text: "A truly modern clinic. The online booking and telehealth options made everything so convenient.", name: "Hassan A.", role: "Verified Patient", image: "https://randomuser.me/api/portraits/men/9.jpg", stars: "★★★★★" },
   ];
+
+  const firstColumn = clinicReviews.slice(0, 3);
+  const secondColumn = clinicReviews.slice(3, 6);
+  const thirdColumn = clinicReviews.slice(6, 9);
 
   // Video Carousel (No Autoplay)
   const [emblaVidRef, emblaVidApi] = useEmblaCarousel({ align: "start", dragFree: true });
-  // Text Review Carousel (Autoplay)
-  const [emblaRevRef, emblaRevApi] = useEmblaCarousel(
-    { align: "start", dragFree: true },
-    [Autoplay({ delay: 5000, stopOnInteraction: true })]
-  );
 
   const [activeVideo, setActiveVideo] = useState<number | null>(null);
 
@@ -68,21 +56,18 @@ export default function VideoTestimonialsSection() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
 
-  // Sync controls with Video Carousel (or Text, arbitrarily using Vid as primary for dots)
+  // Sync controls with Video Carousel
   const scrollPrev = useCallback(() => {
     if (emblaVidApi) emblaVidApi.scrollPrev();
-    if (emblaRevApi) emblaRevApi.scrollPrev();
-  }, [emblaVidApi, emblaRevApi]);
+  }, [emblaVidApi]);
 
   const scrollNext = useCallback(() => {
     if (emblaVidApi) emblaVidApi.scrollNext();
-    if (emblaRevApi) emblaRevApi.scrollNext();
-  }, [emblaVidApi, emblaRevApi]);
+  }, [emblaVidApi]);
 
   const scrollTo = useCallback((index: number) => {
     if (emblaVidApi) emblaVidApi.scrollTo(index);
-    if (emblaRevApi) emblaRevApi.scrollTo(index);
-  }, [emblaVidApi, emblaRevApi]);
+  }, [emblaVidApi]);
 
   const onSelect = useCallback(() => {
     if (!emblaVidApi) return;
@@ -108,7 +93,7 @@ export default function VideoTestimonialsSection() {
   };
 
   return (
-    <section className="bg-[#0C0C0E] py-24 w-full relative grain-overlay">
+    <section className="bg-[#0C0C0E] py-24 w-full relative grain-overlay overflow-hidden">
       <div className="absolute top-0 w-full divider-lime" />
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
@@ -176,31 +161,8 @@ export default function VideoTestimonialsSection() {
           </div>
         </div>
 
-        {/* PART B: Text Reviews Carousel */}
-        <div className="mt-10 overflow-hidden -mx-6 px-6" ref={emblaRevRef}>
-          <div className="flex gap-4">
-            {reviews.map((rev, idx) => (
-              <div
-                key={idx}
-                className="min-w-[300px] flex-shrink-0 bg-[var(--color-brand-card)] rounded-2xl border border-[var(--color-brand-border)] p-6"
-              >
-                <div className="text-[#C8F04B] text-sm tracking-widest mb-3">★★★★★</div>
-                <p className="italic text-[var(--color-brand-muted)] text-sm leading-relaxed mb-4">
-                  "{rev.text}"
-                </p>
-                <div className="mt-auto">
-                  <h4 className="text-white font-semibold text-sm">{rev.name}</h4>
-                  <p className="text-[var(--color-brand-muted)] text-xs mt-1 flex items-center gap-1">
-                    <span className="text-green-400">✓</span> Verified Google Review
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Combined Navigation UI */}
-        <div className="mt-8 flex items-center justify-between max-w-6xl mx-auto">
+        {/* Video Navigation UI */}
+        <div className="mt-8 flex items-center justify-between max-w-6xl mx-auto border-b border-[rgba(255,255,255,0.05)] pb-16">
           <div className="flex gap-2">
             <button
               onClick={scrollPrev}
@@ -238,15 +200,31 @@ export default function VideoTestimonialsSection() {
           </div>
         </div>
 
+        {/* PART B: Vertical Scrolling Testimonial Columns */}
+        <div className="mt-16">
+          <div className="flex flex-col items-center justify-center text-center mb-10">
+            <h3 className="text-2xl md:text-3xl font-syne font-bold text-white mb-2">
+              Hundreds of Success Stories
+            </h3>
+            <p className="text-[#888896]">See what our patients say about their recovery journeys.</p>
+          </div>
+
+          <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)] h-[600px] overflow-hidden">
+            <TestimonialsColumn testimonials={firstColumn} duration={25} />
+            <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={35} />
+            <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={30} />
+          </div>
+        </div>
+
         {/* Read all reviews link */}
-        <div className="mt-12 text-center">
+        <div className="mt-12 text-center relative z-20">
           <a
             href="https://g.page/mysportsinjury"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center border border-[var(--color-brand-border)] text-white px-6 py-3 rounded-full hover:border-[#C8F04B]/40 hover:bg-[var(--color-brand-surface)] transition-all text-sm font-medium group"
+            className="inline-flex items-center justify-center border border-[var(--color-brand-border)] text-white px-8 py-3.5 rounded-full hover:border-[#C8F04B] hover:text-[#C8F04B] hover:bg-[rgba(200,240,75,0.05)] transition-all text-sm font-medium group bg-[#0C0C0E]"
           >
-            Read All 650+ Reviews
+            Read All 650+ Google Reviews
             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
