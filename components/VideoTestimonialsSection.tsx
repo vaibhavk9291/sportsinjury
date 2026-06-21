@@ -127,7 +127,7 @@ export default function VideoTestimonialsSection() {
                     id={`video-${vid.id}`}
                     controls={activeVideo === vid.id}
                     playsInline
-                    className="w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover"
                     poster={vid.poster}
                   >
                     <source src={vid.src} type="video/mp4" />
