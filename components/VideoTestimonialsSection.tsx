@@ -13,7 +13,7 @@ export default function VideoTestimonialsSection() {
       stars: "★★★★★",
       quote: "James — 'I had severe lower back pain. Now completely pain-free after 4 sessions.'",
       name: "James T.",
-      src: "/videos/WhatsApp-Video-2026-02-14-at-11.07.37-AM-1.mp4"
+      youtubeId: "bVNfEYoGGEo"
     },
     {
       id: 2,
@@ -21,7 +21,7 @@ export default function VideoTestimonialsSection() {
       stars: "★★★★★",
       quote: "Sarah — 'Best sports massage I've ever had. They actually fix the root cause.'",
       name: "Sarah M.",
-      src: "/videos/WhatsApp-Video-2026-02-14-at-11.07.38-AM-1.mp4"
+      youtubeId: "5KD3nSW7bVk"
     },
     {
       id: 3,
@@ -29,7 +29,7 @@ export default function VideoTestimonialsSection() {
       stars: "★★★★★",
       quote: "Marcus — 'Post-surgery rehab was brilliant. Back to training in 8 weeks.'",
       name: "Marcus L.",
-      src: "/videos/WhatsApp-Video-2026-02-14-at-11.07.38-AM-2.mp4"
+      youtubeId: "Hy1qjQomD8Y"
     }
   ];
 
@@ -87,13 +87,7 @@ export default function VideoTestimonialsSection() {
     emblaVidApi.on("reInit", onSelect);
   }, [emblaVidApi, onSelect]);
 
-  const playVideo = (id: number) => {
-    setActiveVideo(id);
-    const videoElement = document.getElementById(`video-${id}`) as HTMLVideoElement;
-    if (videoElement) {
-      videoElement.play();
-    }
-  };
+
 
   return (
     <section className="bg-[#0C0C0E] py-24 w-full relative grain-overlay overflow-hidden">
@@ -119,30 +113,34 @@ export default function VideoTestimonialsSection() {
                 key={vid.id}
                 className="min-w-[380px] md:min-w-[480px] flex-shrink-0 bg-[var(--color-brand-card)] rounded-2xl overflow-hidden border border-[var(--color-brand-border)] relative flex flex-col"
               >
-                <div className="relative aspect-video bg-zinc-900 group">
-                  <video
-                    id={`video-${vid.id}`}
-                    controls={activeVideo === vid.id}
-                    playsInline
-                    className="w-full h-full object-cover"
-                    poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9' fill='%23111115'%3E%3Crect width='16' height='9'/%3E%3C/svg%3E"
-                  >
-                    <source src={vid.src} type="video/mp4" />
-                  </video>
-                  
-                  {activeVideo !== vid.id && (
+                <div className="relative aspect-video bg-zinc-900 overflow-hidden group">
+                  {activeVideo === vid.id ? (
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/${vid.youtubeId}?autoplay=1&rel=0`}
+                      title="YouTube video player"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="absolute inset-0 w-full h-full object-cover"
+                    ></iframe>
+                  ) : (
                     <>
-                      {/* Badge */}
+                      <img 
+                        src={`https://img.youtube.com/vi/${vid.youtubeId}/maxresdefault.jpg`} 
+                        alt="Video Thumbnail" 
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                      />
                       <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-sm text-white text-[11px] rounded-full px-3 py-1 z-10">
                         {vid.badge}
                       </div>
                       
-                      {/* Play Button Overlay */}
                       <div 
-                        className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer z-20 group"
-                        onClick={() => playVideo(vid.id)}
+                        className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer z-20 group-hover:bg-black/10 transition-all duration-300"
+                        onClick={() => setActiveVideo(vid.id)}
                       >
-                        <div className="w-16 h-16 rounded-full bg-[#C8F04B] flex items-center justify-center group-hover:scale-110 group-hover:bg-white transition-all duration-300">
+                        <div className="w-16 h-16 rounded-full bg-[#C8F04B] flex items-center justify-center group-hover:scale-110 group-hover:bg-white transition-all duration-300 shadow-[0_0_20px_rgba(200,240,75,0.4)] group-hover:shadow-[0_0_30px_rgba(255,255,255,0.6)]">
                           <PlayCircle className="text-[#0C0C0E] w-8 h-8 ml-1" />
                         </div>
                       </div>
