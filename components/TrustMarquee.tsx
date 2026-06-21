@@ -24,42 +24,50 @@ export default function TrustMarquee() {
   ];
 
   return (
-    <section className="bg-[var(--color-brand-lime)] py-16 w-full overflow-hidden">
+    <section className="bg-[var(--color-brand-card)] py-16 w-full overflow-hidden relative">
+      <div className="absolute top-0 w-full divider-lime" />
+      
       <div className="max-w-4xl mx-auto px-6 text-center mb-12">
-        <h2 className="font-syne font-bold text-[#0C0C0E] text-2xl md:text-3xl leading-tight">
-          Trusted by Athletes, Professionals & Organisations Across Manchester.
+        <span className="text-[var(--color-brand-muted)] font-syne text-[11px] uppercase tracking-[0.15em] font-semibold block mb-4">
+          <span className="inline-block w-5 h-0.5 bg-[#C8F04B] mr-3 mb-0.5 align-middle" />
+          OUR PARTNERS
+        </span>
+        <h2 className="font-syne font-bold text-white text-2xl md:text-3xl leading-tight">
+          Trusted by <span className="lime-underline">Athletes</span>, Professionals & Organisations.
         </h2>
       </div>
 
       <div className="flex flex-col gap-10">
         {/* Row 1 */}
         <div className="flex overflow-hidden whitespace-nowrap">
-          <div className="animate-marquee inline-flex items-center gap-16 min-w-full">
-            {[...row1Logos, ...row1Logos, ...row1Logos].map((src, i) => (
+          <div className="marquee inline-flex items-center gap-16 min-w-full">
+            {[...row1Logos, ...row1Logos, ...row1Logos, ...row1Logos].map((src, i) => (
               <img
                 key={i}
                 src={src}
                 alt="Partner logo"
-                className="h-10 w-auto object-contain brightness-0 opacity-80"
+                className="h-10 w-auto object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 transition-all duration-300"
               />
             ))}
           </div>
         </div>
 
-        {/* Row 2 (Reverse direction if possible, but regular marquee is fine) */}
+        {/* Row 2 */}
         <div className="flex overflow-hidden whitespace-nowrap">
-          <div className="animate-marquee inline-flex items-center gap-16 min-w-full" style={{ animationDirection: "reverse" }}>
-            {[...row2Logos, ...row2Logos, ...row2Logos].map((src, i) => (
+          <div className="marquee-reverse inline-flex items-center gap-16 min-w-full">
+            {[...row2Logos, ...row2Logos, ...row2Logos, ...row2Logos].map((src, i) => (
               <img
                 key={i}
                 src={src}
                 alt="Institution logo"
-                className="h-12 w-auto object-contain brightness-0 opacity-80"
+                className="h-12 w-auto object-contain brightness-0 invert opacity-40 hover:opacity-100 hover:brightness-100 transition-all duration-300"
               />
             ))}
           </div>
         </div>
       </div>
+      
+      <div className="absolute bottom-0 w-full divider-lime" />
     </section>
   );
 }

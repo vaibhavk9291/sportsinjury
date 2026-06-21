@@ -65,10 +65,52 @@ body::before {
 
   @keyframes urgencyPulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
-    50% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.15); }
+    50% { box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.12); }
   }
 
   .animate-urgency-pulse {
     animation: urgencyPulse 2.5s ease-in-out infinite;
   }
+  
+  /* NEW VISUAL UPGRADE UTILITIES */
+  
+  /* Lime gradient divider utility */
+  .divider-lime {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(200,240,75,0.35) 50%, transparent 100%);
+    border: none;
+  }
+  
+  /* Grain texture overlay */
+  .grain-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  /* Lime text underline utility */
+  .lime-underline {
+    text-decoration: underline;
+    text-decoration-color: #C8F04B;
+    text-underline-offset: 8px;
+    text-decoration-thickness: 2px;
+  }
+  
+  /* Glow pulse for buttons */
+  @keyframes buttonGlow {
+    0%, 100% { box-shadow: 0 0 0px rgba(200,240,75,0); }
+    50% { box-shadow: 0 0 24px rgba(200,240,75,0.4); }
+  }
+  .btn-glow-pulse { animation: buttonGlow 2.5s ease-in-out infinite; }
+  
+  /* Marquee additions */
+  @keyframes marqueeReverse { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  .marquee-reverse { animation: marqueeReverse 45s linear infinite; }
+  
+  /* Hide scrollbars on carousels */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
