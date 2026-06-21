@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
@@ -59,6 +59,10 @@ export default function Navbar() {
 
         {/* Right: Desktop Actions */}
         <div className="hidden lg:flex items-center gap-6">
+          <a href="tel:01615244339" className="flex items-center gap-2 text-sm text-zinc-400 hover:text-[var(--color-brand-lime)] transition-colors">
+            <Phone size={16} />
+            <span>0161 524 4339</span>
+          </a>
           <Link href="/shop" className="text-sm text-zinc-400 hover:text-white transition-colors">Shop</Link>
           <a
             href="https://mysportinjury.janeapp.co.uk/"
@@ -107,6 +111,10 @@ export default function Navbar() {
             </div>
 
             <div className="mt-auto pb-8">
+              <a href="tel:01615244339" className="flex items-center justify-center gap-2 text-zinc-400 hover:text-[var(--color-brand-lime)] mb-6 transition-colors">
+                <Phone size={20} />
+                <span className="font-semibold text-lg">0161 524 4339</span>
+              </a>
               <a
                 href="https://mysportinjury.janeapp.co.uk/"
                 target="_blank"
