@@ -2,7 +2,7 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import ServicesCarousel from "@/components/ServicesCarousel";
+import ServicesGallery from "@/components/ServicesGallery";
 import TrustMarquee from "@/components/TrustMarquee";
 import VideoTestimonialsSection from "@/components/VideoTestimonialsSection";
 import Team from "@/components/Team";
@@ -20,7 +20,7 @@ export default function Home() {
       <main className="flex flex-col min-h-screen">
         <Hero />
         <About />
-        <ServicesCarousel />
+        <ServicesGallery />
         <TrustMarquee />
         <Team />
         <VideoTestimonialsSection />
