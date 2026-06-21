@@ -21,9 +21,9 @@ export default function Home() {
         <Hero />
         <About />
         <ServicesCarousel />
-        <VideoTestimonialsSection />
         <TrustMarquee />
         <Team />
+        <VideoTestimonialsSection />
         <Blog />
         <LocationCTA />
       </main>

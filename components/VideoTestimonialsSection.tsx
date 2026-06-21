@@ -108,7 +108,8 @@ export default function VideoTestimonialsSection() {
   };
 
   return (
-    <section className="bg-[var(--color-brand-bg)] py-24 w-full relative grain-overlay border-t divider-lime">
+    <section className="bg-[#0C0C0E] py-24 w-full relative grain-overlay">
+      <div className="absolute top-0 w-full divider-lime" />
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
         {/* Header */}
