@@ -13,6 +13,7 @@ export default function VideoTestimonialsSection() {
       stars: "★★★★★",
       quote: "James — 'I had severe lower back pain. Now completely pain-free after 4 sessions.'",
       name: "James T.",
+      src: "/videos/WhatsApp-Video-2026-02-14-at-11.07.37-AM-1.mp4"
     },
     {
       id: 2,
@@ -20,6 +21,7 @@ export default function VideoTestimonialsSection() {
       stars: "★★★★★",
       quote: "Sarah — 'Best sports massage I've ever had. They actually fix the root cause.'",
       name: "Sarah M.",
+      src: "/videos/WhatsApp-Video-2026-02-14-at-11.07.38-AM-1.mp4"
     },
     {
       id: 3,
@@ -27,6 +29,15 @@ export default function VideoTestimonialsSection() {
       stars: "★★★★★",
       quote: "Marcus — 'Post-surgery rehab was brilliant. Back to training in 8 weeks.'",
       name: "Marcus L.",
+      src: "/videos/WhatsApp-Video-2026-02-14-at-11.07.38-AM-2.mp4"
+    },
+    {
+      id: 4,
+      badge: "Injury Rehab",
+      stars: "★★★★★",
+      quote: "Alex — 'Could barely lift my arm, now I'm back to full mobility without pain.'",
+      name: "Alex R.",
+      src: "/videos/IMG_8067.mp4"
     }
   ];
 
@@ -124,7 +135,7 @@ export default function VideoTestimonialsSection() {
                     className="w-full h-full object-cover"
                     poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 9' fill='%23111115'%3E%3Crect width='16' height='9'/%3E%3C/svg%3E"
                   >
-                    <source src="https://mysportsinjury.co.uk/wp-content/uploads/2025/12/My-Sports-Injury.mp4" type="video/mp4" />
+                    <source src={vid.src} type="video/mp4" />
                   </video>
                   
                   {activeVideo !== vid.id && (
