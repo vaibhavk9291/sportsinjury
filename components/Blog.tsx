@@ -1,58 +1,33 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { CardStack, CardStackItem } from "@/components/ui/card-stack";
+import { CircularGallery } from "@/components/ui/circular-gallery-2";
 
 export default function Blog() {
-  const posts: CardStackItem[] = [
+  const galleryItems = [
     {
-      id: "1",
-      tag: "Injury Recovery",
-      description: "11 March 2026",
-      title: "Ankle Sprain Recovery Blueprint – Expert Physiotherapy in Manchester",
-      href: "/ankle-sprain-recovery-blueprint-expert-physiotherapy-in-manchester/",
-      imageSrc: "https://images.unsplash.com/photo-1576678927484-cc907957088c?q=80&w=2187&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1576678927484-cc907957088c?q=80&w=2187&auto=format&fit=crop",
+      text: "Ankle Sprain Recovery"
     },
     {
-      id: "2",
-      tag: "Sports Rehab",
-      description: "11 March 2026",
-      title: "ACL Tears in Football: Evidence-Based Sports Therapy Rehabilitation",
-      href: "/acl-tears-in-football-evidence-based-sports-therapy-rehabilitation-and-return-to-play-strategies/",
-      imageSrc: "https://images.unsplash.com/photo-1526502611732-fcc61a0d7f45?q=80&w=2370&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1526502611732-fcc61a0d7f45?q=80&w=2370&auto=format&fit=crop",
+      text: "ACL Tears in Football"
     },
     {
-      id: "3",
-      tag: "Back & Core",
-      description: "12 February 2026",
-      title: "Conquer Chronic Lower Back / Neck Pain at MY Sports Injury",
-      href: "/conquer-chronic-lower-back-neck-pain-at-my-sports-injury/",
-      imageSrc: "https://images.unsplash.com/photo-1620188467120-5042ed1eb5da?q=80&w=2187&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1620188467120-5042ed1eb5da?q=80&w=2187&auto=format&fit=crop",
+      text: "Conquer Back Pain"
     },
     {
-      id: "4",
-      tag: "Pain Management",
-      description: "30 September 2025",
-      title: "Quadriceps Spasticity: An Overlooked Cause of Knee Pain",
-      href: "/quadriceps-spasticity-an-overlooked-cause-of-knee-pain/",
-      imageSrc: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2420&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2420&auto=format&fit=crop",
+      text: "Quadriceps Spasticity"
     },
     {
-      id: "5",
-      tag: "Sports Massage",
-      description: "28 September 2025",
-      title: "Sports Massage: The Deep Tissue Release Football Pain Solution",
-      href: "/sports-massage-the-deep-tissue-release-football-pain-solution/",
-      imageSrc: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=2187&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=2187&auto=format&fit=crop",
+      text: "Sports Massage Release"
     },
     {
-      id: "6",
-      tag: "Recovery",
-      description: "20 September 2025",
-      title: "Deep Tissue Massage & Physiotherapy: Unlocking Performance",
-      href: "/deep-tissue-massage-physiotherapy-dry-cupping-unlocking-posture-performance-and-recovery/",
-      imageSrc: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2420&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2420&auto=format&fit=crop",
+      text: "Unlocking Performance"
     }
   ];
 
@@ -71,33 +46,12 @@ export default function Blog() {
         </div>
 
         <div className="mt-12 flex justify-center w-full relative">
-          {/* Use standard dimensions but responsive container inside CardStack */}
-          <div className="w-full max-w-4xl mx-auto relative hidden sm:block">
-            <CardStack
-              items={posts}
-              initialIndex={0}
-              autoAdvance
-              intervalMs={3000}
-              pauseOnHover
-              showDots
-              cardWidth={520}
-              cardHeight={320}
-            />
-          </div>
-          
-          {/* Mobile fallback (stack scales poorly on extremely narrow screens) */}
-          <div className="w-full sm:hidden">
-            <CardStack
-              items={posts}
-              initialIndex={0}
-              autoAdvance
-              intervalMs={3000}
-              pauseOnHover
-              showDots
-              cardWidth={320}
-              cardHeight={360}
-              overlap={0.2}
-              spreadDeg={30}
+          <div className="relative h-[600px] w-full rounded-lg">
+            <CircularGallery
+              items={galleryItems}
+              bend={3}
+              borderRadius={0.05}
+              scrollEase={0.02}
             />
           </div>
         </div>
